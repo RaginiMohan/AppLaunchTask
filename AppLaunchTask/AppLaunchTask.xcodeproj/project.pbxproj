@@ -13,6 +13,8 @@
 		9C086D52268B106600DF877F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C086D50268B106600DF877F /* Main.storyboard */; };
 		9C086D54268B106700DF877F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C086D53268B106700DF877F /* Assets.xcassets */; };
 		9C086D57268B106700DF877F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C086D55268B106700DF877F /* LaunchScreen.storyboard */; };
+		9CE81FA2268B91BF0004C47A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE81FA1268B91BF0004C47A /* LoginViewController.swift */; };
+		9CE81FE9268B93920004C47A /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE81FE8268B93920004C47A /* AppFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,11 @@
 		9C086D53268B106700DF877F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C086D56268B106700DF877F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C086D58268B106700DF877F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CE81FA1268B91BF0004C47A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9CE81FE4268B932A0004C47A /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		9CE81FE5268B933A0004C47A /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		9CE81FE6268B93480004C47A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		9CE81FE8268B93920004C47A /* AppFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,8 @@
 		9C086D49268B106600DF877F /* AppLaunchTask */ = {
 			isa = PBXGroup;
 			children = (
+				9CE81FA4268B92D60004C47A /* Font files */,
+				9CE81FA0268B918B0004C47A /* Login&SignUp */,
 				9C086D4A268B106600DF877F /* AppDelegate.swift */,
 				9C086D4C268B106600DF877F /* SceneDelegate.swift */,
 				9C086D4E268B106600DF877F /* ViewController.swift */,
@@ -65,6 +74,33 @@
 				9C086D58268B106700DF877F /* Info.plist */,
 			);
 			path = AppLaunchTask;
+			sourceTree = "<group>";
+		};
+		9CE81FA0268B918B0004C47A /* Login&SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				9CE81FA1268B91BF0004C47A /* LoginViewController.swift */,
+			);
+			path = "Login&SignUp";
+			sourceTree = "<group>";
+		};
+		9CE81FA4268B92D60004C47A /* Font files */ = {
+			isa = PBXGroup;
+			children = (
+				9CE81FE7268B93640004C47A /* AppFont */,
+				9CE81FE4268B932A0004C47A /* Roboto-Bold.ttf */,
+				9CE81FE5268B933A0004C47A /* Roboto-Medium.ttf */,
+				9CE81FE6268B93480004C47A /* Roboto-Regular.ttf */,
+			);
+			path = "Font files";
+			sourceTree = "<group>";
+		};
+		9CE81FE7268B93640004C47A /* AppFont */ = {
+			isa = PBXGroup;
+			children = (
+				9CE81FE8268B93920004C47A /* AppFont.swift */,
+			);
+			path = AppFont;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +173,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CE81FA2268B91BF0004C47A /* LoginViewController.swift in Sources */,
+				9CE81FE9268B93920004C47A /* AppFont.swift in Sources */,
 				9C086D4F268B106600DF877F /* ViewController.swift in Sources */,
 				9C086D4B268B106600DF877F /* AppDelegate.swift in Sources */,
 				9C086D4D268B106600DF877F /* SceneDelegate.swift in Sources */,
@@ -287,6 +325,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VYF2Z948FZ;
 				INFOPLIST_FILE = AppLaunchTask/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -305,6 +344,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VYF2Z948FZ;
 				INFOPLIST_FILE = AppLaunchTask/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
