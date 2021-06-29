@@ -12,14 +12,11 @@ class UserListViewController: UIViewController {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var noDataLbl: UILabel!
     @IBOutlet weak var addUserBtn: UIButton!
-    @IBOutlet weak var navigationView: UIView!
     @IBOutlet weak var userListTbleView: UITableView!
     
     var db:DatabaseHelper = DatabaseHelper()
         
     var users:[User] = []
-    
-    let cellReuseIdentifier = "cell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +62,8 @@ class UserListViewController: UIViewController {
     
     @IBAction func addUserBtnAction(_ sender: Any) {
         
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserFormViewController") as! UserFormViewController
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -80,15 +79,27 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource{
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
         {
-            let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)!
             
-            cell.selectionStyle = .none
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UserListTableViewCell", for: indexPath) as? UserListTableViewCell
             
-            cell.textLabel?.text = "Name: " + users[indexPath.row].firstName + " " + users[indexPath.row].lastName
-            cell.detailTextLabel?.text = "Email Id: " + users[indexPath.row].email
+            cell?.selectionStyle = .none
+            cell?.nameLbl.text = "Name: " + users[indexPath.row].firstName + " " + users[indexPath.row].lastName
+            cell?.nameLbl.textColor = .darkGray
+            cell?.nameLbl.backgroundColor = .clear
+            cell?.nameLbl.font = .setAppFontMedium(14)
             
-            return cell
+            cell?.emailLbl.text = "Email Id: " + users[indexPath.row].email
+            cell?.emailLbl.textColor = .darkGray
+            cell?.emailLbl.backgroundColor = .clear
+            cell?.emailLbl.font = .setAppFontMedium(14)
+           
+            return cell!
         }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
