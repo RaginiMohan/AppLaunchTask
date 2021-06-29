@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import AlamoFire
+import UIKit
+import Alamofire
 
 class APIManager: NSObject {
 
@@ -14,8 +15,8 @@ class APIManager: NSObject {
         print("BASE URL : \(serviceName as String)")
         print("PARAMETER : \(parameters!)")
         
-        let tokenStr = usersession.object(forKey: "UserToken")as! String
-        let postheaders : HTTPHeaders = ["Authorization" : tokenStr]
+       
+        let postheaders : HTTPHeaders = ["Authorization" : ""]
         Alamofire.request(serviceName, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: postheaders).responseJSON { (response:DataResponse<Any>) in
             switch(response.result) {
             case .success(_):
