@@ -3,6 +3,7 @@
 
 //Category Class For UIFont.Chnage the font here to change the app font
 import UIKit
+
 extension UIFont
 {
     class func setAppFontRegular(_ size:CGFloat)->(UIFont)
