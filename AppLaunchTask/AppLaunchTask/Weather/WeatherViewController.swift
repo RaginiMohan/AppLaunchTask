@@ -8,17 +8,18 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
-
+    
     @IBOutlet weak var logoutBtn: UIButton!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var weatherTblView: UITableView!
     
     var currentDataDic = NSDictionary()
+    var dailyDataDic = NSArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initialUISetUp()
         
     }
@@ -31,7 +32,7 @@ class WeatherViewController: UIViewController {
         titleLbl.textColor = .black
         titleLbl.backgroundColor = .clear
         titleLbl.font = .setAppFontMedium(17)
-            
+        
         backBtn.setImage(UIImage(named: "backIcon"), for: .normal)
         
         logoutBtn.ButtonUIChange(bgColor: .white, titleColor: .systemPink, titleString: "Logout")
@@ -43,10 +44,10 @@ class WeatherViewController: UIViewController {
     }
     
     func fetchWeatherReport() {
-
-
+        
+        
         let stringURL = "https://api.openweathermap.org/data/2.5/onecall?lat=12.9082847623315&lon=77.65197822993314&units=imperial&appid=b143bb707b2ee117e62649b358207d3e"
-
+        
         
         APIManager.apiGet(serviceName: stringURL, parameters: nil) { (json:NSDictionary?, error:NSError?) in
             if error != nil {
@@ -54,13 +55,21 @@ class WeatherViewController: UIViewController {
                 return
             }
             print(json!)
-
+            
             self.currentDataDic = json?.value(forKey: "current") as! NSDictionary
             print(self.currentDataDic)
-
+            self.dailyDataDic = json?.object(forKey: "hourly") as! NSArray
+            
+            
+            print(self.dailyDataDic)
+            
+            self.weatherTblView.delegate = self
+            self.weatherTblView.dataSource = self
+            
             self.weatherTblView.isHidden = false
+            
             self.weatherTblView.reloadData()
-           
+            
         }
         
     }
@@ -85,9 +94,9 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         switch(section) {
-             case 1:return "Tomorrow"
-             default :return "Today"
-           }
+        case 1:return "Tomorrow"
+        default :return "Today"
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -99,37 +108,38 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-       {
+    {
         if section == 0{
             return 1
         }else{
-            return 0
+            return dailyDataDic.count
         }
-           
-       }
-       
-       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-       {
-           
-           let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as? WeatherTableViewCell
-           
-           cell?.selectionStyle = .none
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as? WeatherTableViewCell
+        
+        cell?.selectionStyle = .none
         
         if indexPath.section == 0{
             
-            
-            
             cell?.tempLbl.lblUIChange(textString: "Temp: \(currentDataDic.value(forKey: "temp") ?? "")")
             cell?.humidityLbl.lblUIChange(textString: "Humidity: \(currentDataDic.value(forKey: "humidity") ?? "")")
-            
-            cell?.weatherTypeLbl.lblUIChange(textString: "Weather: " + (((self.currentDataDic.value(forKey: "weather") as! NSArray).object(at: 0) as? NSDictionary)?.value(forKey: "main") as! String))
+            cell?.weatherTypeLbl.lblUIChange(textString: "Weather: " + (((self.currentDataDic.object(forKey: "weather") as! NSArray).object(at: 0) as? NSDictionary)?.value(forKey: "description") as! String))
             cell?.windSpeedLbl.lblUIChange(textString: "Wind Speed: \(currentDataDic.value(forKey: "wind_speed") ?? "")")
-               
+            
+        }else{
+            cell?.tempLbl.lblUIChange(textString: "Temp: \((dailyDataDic.object(at: indexPath.row)as! NSDictionary).value(forKey: "temp") ?? "" )")
+            cell?.humidityLbl.lblUIChange(textString: "Humidity: \((dailyDataDic.object(at: indexPath.row)as! NSDictionary).value(forKey: "humidity") ?? "" )")
+            cell?.weatherTypeLbl.lblUIChange(textString: "Weather: " + ((((dailyDataDic.object(at: indexPath.row)as! NSDictionary).object(forKey: "weather") as! NSArray).object(at: 0) as? NSDictionary)?.value(forKey: "description") as! String))
+            
+            cell?.windSpeedLbl.lblUIChange(textString: "Wind Speed: \((dailyDataDic.object(at: indexPath.row)as! NSDictionary).value(forKey: "wind_speed") ?? "" )")
         }
-           return cell!
-       }
-   
-
-   
+        return cell!
+    }
+    
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 
 class UserFormViewController: UIViewController {
-
+    
     @IBOutlet weak var titleLbl: UILabel!
     
     @IBOutlet weak var firstNameTxtField: UITextField!
@@ -19,12 +19,12 @@ class UserFormViewController: UIViewController {
     @IBOutlet weak var cancelBtn: UIButton!
     
     var db:DatabaseHelper = DatabaseHelper()
-        
+    
     var users:[User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initialUISetUp()
     }
     
@@ -52,7 +52,7 @@ class UserFormViewController: UIViewController {
         cancelBtn.ButtonUIChange(bgColor: .white, titleColor: .systemPink, titleString: "Cancel")
         cancelBtn.layer.borderColor = UIColor.systemPink.cgColor
         cancelBtn.layer.borderWidth = 0.7
-       
+        
         
     }
     
@@ -69,25 +69,25 @@ class UserFormViewController: UIViewController {
         }else if isValidEmail(email: emailTxtField.text) == false{
             showAlert(with: "Please enter a valid email id")
         }
-            
+        
         else {
             
-                if let getUserId = UserDefaults.standard.value(forKey: "userid") as? Int {
-                    UserDefaults.standard.setValue(getUserId + 1 , forKey: "userid")
-                } else {
-                    UserDefaults.standard.setValue(1, forKey: "userid")
-                }
+            if let getUserId = UserDefaults.standard.value(forKey: "userid") as? Int {
+                UserDefaults.standard.setValue(getUserId + 1 , forKey: "userid")
+            } else {
+                UserDefaults.standard.setValue(1, forKey: "userid")
+            }
+            
+            let userEMail = users.filter { $0.email == emailTxtField.text}
+            
+            if userEMail.count > 0 {
+                showAlert(with: "Sorry, this mail already registered")
+            } else {
+                db.insert(id: UserDefaults.standard.value(forKey: "userid") as? Int ?? 1, email: emailTxtField.text ?? "", firstName: firstNameTxtField.text ?? "", lastName: lastNameTxtField.text ?? "")
                 
-                let userEMail = users.filter { $0.email == emailTxtField.text}
-                
-                if userEMail.count > 0 {
-                    showAlert(with: "Sorry, this mail already registered")
-                } else {
-                    db.insert(id: UserDefaults.standard.value(forKey: "userid") as? Int ?? 1, email: emailTxtField.text ?? "", firstName: firstNameTxtField.text ?? "", lastName: lastNameTxtField.text ?? "")
-                   
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
         
         
@@ -98,16 +98,16 @@ class UserFormViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-     func showAlert(with message: String)
+    func showAlert(with message: String)
     {
         let alertController = UIAlertController(title: "Alert", message: message, preferredStyle:UIAlertController.Style.alert)
-
+        
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
-       { action -> Void in
-         
-       })
+        { action -> Void in
+            
+        })
         self.present(alertController, animated: true, completion: nil)
-
+        
     }
     
 }
@@ -115,7 +115,7 @@ class UserFormViewController: UIViewController {
 extension UserFormViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-     
+        
         if textField == firstNameTxtField{
             firstNameTxtField.resignFirstResponder()
             lastNameTxtField.becomeFirstResponder()

@@ -8,16 +8,16 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initialUISetUp()
     }
     
-    //
+    
     func initialUISetUp(){
         loginBtn.setTitle("LogIn", for: .normal)
         loginBtn.setTitleColor(UIColor.white, for: .normal)
@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
         signUpBtn.titleLabel?.font = .setAppFontMedium(16)
     }
     
-
+    
     @IBAction func loginBtnAction(_ sender: Any) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
@@ -42,14 +42,5 @@ class LoginViewController: UIViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+   
 }

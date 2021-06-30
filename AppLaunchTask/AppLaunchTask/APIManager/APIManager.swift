@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class APIManager: NSObject {
-
+    
     
     class func apiGet(serviceName:String,parameters: [String:Any]?, completionHandler: @escaping (NSDictionary?, NSError?) -> ()) {
         AF.request(serviceName, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (response:AFDataResponse<Any>) in

@@ -480,10 +480,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="2cW-fg-G3D" id="GdN-C1-9aL"/>
-                                    <outlet property="delegate" destination="2cW-fg-G3D" id="sG1-XE-OrU"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7YX-f9-hP2"/>

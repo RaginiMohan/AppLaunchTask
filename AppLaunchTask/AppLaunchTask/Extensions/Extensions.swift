@@ -10,42 +10,42 @@ import UIKit
 
 
 extension UITextField{
-
-func txtFieldUIChange(){
-    let txtFld = self
-    txtFld.textColor = .darkGray
-    txtFld.textAlignment = .left
-    txtFld.font = .setAppFontRegular(15)
-    txtFld.backgroundColor = .clear
-}
-
+    
+    func txtFieldUIChange(){
+        let txtFld = self
+        txtFld.textColor = .darkGray
+        txtFld.textAlignment = .left
+        txtFld.font = .setAppFontRegular(15)
+        txtFld.backgroundColor = .clear
+    }
+    
 }
 
 extension UILabel{
-
+    
     func lblUIChange(textString: String){
-    let lbl = self
-    lbl.textColor = .darkGray
-    lbl.textAlignment = .left
-    lbl.font = .setAppFontMedium(14)
-    lbl.backgroundColor = .clear
-    lbl.text = textString
-}
-
+        let lbl = self
+        lbl.textColor = .darkGray
+        lbl.textAlignment = .left
+        lbl.font = .setAppFontMedium(14)
+        lbl.backgroundColor = .clear
+        lbl.text = textString
+    }
+    
 }
 
 
 extension UIButton{
-
+    
     func ButtonUIChange(bgColor: UIColor, titleColor: UIColor, titleString: String ){
-    let Btn = self
-    Btn.layer.cornerRadius = 5
-    Btn.backgroundColor = bgColor
-    Btn.setTitleColor(titleColor, for: .normal)
-    Btn.titleLabel?.font = .setAppFontMedium(16)
-    Btn.setTitle(titleString, for: .normal)
-}
-
+        let Btn = self
+        Btn.layer.cornerRadius = 5
+        Btn.backgroundColor = bgColor
+        Btn.setTitleColor(titleColor, for: .normal)
+        Btn.titleLabel?.font = .setAppFontMedium(16)
+        Btn.setTitle(titleString, for: .normal)
+    }
+    
 }
 
 extension UIFont
