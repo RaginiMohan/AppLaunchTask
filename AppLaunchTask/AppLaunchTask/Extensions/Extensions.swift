@@ -21,6 +21,20 @@ func txtFieldUIChange(){
 
 }
 
+extension UILabel{
+
+    func lblUIChange(textString: String){
+    let lbl = self
+    lbl.textColor = .darkGray
+    lbl.textAlignment = .left
+    lbl.font = .setAppFontMedium(14)
+    lbl.backgroundColor = .clear
+    lbl.text = textString
+}
+
+}
+
+
 extension UIButton{
 
     func ButtonUIChange(bgColor: UIColor, titleColor: UIColor, titleString: String ){
