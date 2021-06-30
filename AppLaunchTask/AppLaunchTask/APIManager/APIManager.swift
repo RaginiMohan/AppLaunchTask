@@ -11,7 +11,7 @@ import Alamofire
 
 class APIManager: NSObject {
     
-    
+    //MARK: API Call Method
     class func apiGet(serviceName:String,parameters: [String:Any]?, completionHandler: @escaping (NSDictionary?, NSError?) -> ()) {
         AF.request(serviceName, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (response:AFDataResponse<Any>) in
             switch(response.result) {

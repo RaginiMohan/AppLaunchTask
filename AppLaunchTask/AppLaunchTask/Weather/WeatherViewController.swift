@@ -24,6 +24,7 @@ class WeatherViewController: UIViewController {
         
     }
     
+    //MARK: Initial UI SetUp
     func initialUISetUp(){
         
         weatherTblView.isHidden = true
@@ -43,6 +44,7 @@ class WeatherViewController: UIViewController {
         fetchWeatherReport()
     }
     
+    //MARK: Fetching Weather Data
     func fetchWeatherReport() {
         
         
@@ -85,6 +87,8 @@ class WeatherViewController: UIViewController {
     
 }
 
+
+//MARK: TableView Delegates & DataSources
 extension WeatherViewController: UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {

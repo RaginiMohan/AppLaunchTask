@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-
+//MARK: Common Function for TextField UI
 extension UITextField{
     
     func txtFieldUIChange(){
@@ -21,6 +21,7 @@ extension UITextField{
     
 }
 
+//MARK: Common Function for Label UI
 extension UILabel{
     
     func lblUIChange(textString: String){
@@ -34,7 +35,7 @@ extension UILabel{
     
 }
 
-
+//MARK: Common Function for Button UI
 extension UIButton{
     
     func ButtonUIChange(bgColor: UIColor, titleColor: UIColor, titleString: String ){
@@ -47,6 +48,8 @@ extension UIButton{
     }
     
 }
+
+//MARK: Common Function for Font SetUp
 
 extension UIFont
 {
@@ -67,6 +70,9 @@ extension UIFont
         return UIFont(name: "Roboto-Light", size: size)!
     }
 }
+
+
+//MARK: Function for Email Validation
 
 func isValidEmail(email:String?) -> Bool {
     guard email != nil else { return false }
