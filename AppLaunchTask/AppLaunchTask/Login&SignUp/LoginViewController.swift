@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
         initialUISetUp()
     }
     
-    
+    //MARK: Initial UI SetUp
     func initialUISetUp(){
         loginBtn.setTitle("LogIn", for: .normal)
         loginBtn.setTitleColor(UIColor.white, for: .normal)

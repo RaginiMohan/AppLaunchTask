@@ -24,14 +24,14 @@ class UserListViewController: UIViewController {
         initialUISetUp()
     }
     
+    //MARK: Initial UI SetUp
+    
     func initialUISetUp(){
-        
         
         titleLbl.text = "User List"
         titleLbl.textColor = .black
         titleLbl.backgroundColor = .clear
         titleLbl.font = .setAppFontMedium(17)
-        
         
         noDataLbl.text = "Click  '+'  icon to add user"
         noDataLbl.textColor = .darkGray
@@ -43,6 +43,7 @@ class UserListViewController: UIViewController {
         fetchDBData()
     }
     
+    //MARK: Fetching DB Data
     func fetchDBData(){
         users = db.read()
         if users.count != 0 {
@@ -70,6 +71,7 @@ class UserListViewController: UIViewController {
     
 }
 
+//MARK: TableView Delegates & DataSources
 extension UserListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int

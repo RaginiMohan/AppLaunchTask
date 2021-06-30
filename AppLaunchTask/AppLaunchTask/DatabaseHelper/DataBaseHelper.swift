@@ -95,8 +95,8 @@ class DatabaseHelper
                 let email = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
                 let firstName = String(describing: String(cString: sqlite3_column_text(queryStatement, 2)))
                 let lastName = String(describing: String(cString: sqlite3_column_text(queryStatement, 3)))
-               
-               
+                
+                
                 users.append(User(id: Int(id), email: email, firstName: firstName, lastName: lastName))
                 print("Query Result:")
                 print("\(id) | \(email ) | \(firstName) | \(lastName)")

@@ -28,9 +28,10 @@ class UserFormViewController: UIViewController {
         initialUISetUp()
     }
     
+    //MARK: Initial UI SetUp
+    
     func initialUISetUp(){
-        
-        
+
         titleLbl.text = "User Form"
         titleLbl.textColor = .darkGray
         titleLbl.backgroundColor = .clear
@@ -98,6 +99,8 @@ class UserFormViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    
+    //MARK: Alert View SetUp
     func showAlert(with message: String)
     {
         let alertController = UIAlertController(title: "Alert", message: message, preferredStyle:UIAlertController.Style.alert)
@@ -112,6 +115,7 @@ class UserFormViewController: UIViewController {
     
 }
 
+//MARK: TextField Delegates
 extension UserFormViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
